@@ -26,7 +26,9 @@ export default function RootLayout({
 			<body className={`${quicksand.variable} antialiased`}>
 				<div className="min-h-dvh flex flex-col font-sans">
 					<Header />
-					<main className="flex-1 max-w-7xl mx-auto py-8 px-4">{children}</main>
+					<main className="flex-1 max-w-7xl w-full mx-auto py-8 px-4">
+						{children}
+					</main>
 					<Footer />
 				</div>
 			</body>
