@@ -17,7 +17,7 @@ export default async function Home() {
 
 	return (
 		<>
-			<div className="flex items-center justify-between mb-6">
+			<div className="flex flex-wrap items-center gap-2 justify-between mb-6">
 				<h1 className="text-2xl font-bold text-violet-600">Salas Criadas</h1>
 
 				<Dialog>
@@ -42,7 +42,7 @@ export default async function Home() {
 				</Dialog>
 			</div>
 
-			<div className="grid grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 				{rooms.map(room => (
 					<RoomCard key={room.id} data={room} />
 				))}

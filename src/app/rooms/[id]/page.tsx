@@ -43,7 +43,7 @@ export default async function RoomPage({ params }: RoomPageProps) {
 				<h1 className="text-3xl font-bold">{room.name}</h1>
 				<p className="leading-relaxed my-2 text-zinc-600">{room.description}</p>
 
-				<div className="flex items-center gap-4">
+				<div className="flex flex-wrap items-center gap-4">
 					<div className="flex items-center gap-1 text-zinc-600">
 						<Award className="size-4" />
 						<span className="text-sm">{room.kudoCards.length} kudos</span>
@@ -56,7 +56,7 @@ export default async function RoomPage({ params }: RoomPageProps) {
 				</div>
 			</header>
 
-			<div className="flex items-center justify-between mt-8 mb-6">
+			<div className="flex flex-wrap items-center gap-2 justify-between mt-8 mb-6">
 				<h1 className="text-2xl font-bold text-violet-600">Kudo Cards</h1>
 
 				<Dialog>
@@ -88,7 +88,7 @@ export default async function RoomPage({ params }: RoomPageProps) {
 				</div>
 			)}
 
-			<div className="grid grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 				{room.kudoCards.map(kudoCard => (
 					<KudoCardItem key={kudoCard.id} data={kudoCard} />
 				))}
