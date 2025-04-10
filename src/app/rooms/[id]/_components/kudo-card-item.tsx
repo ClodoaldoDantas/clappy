@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/button'
+import { ShareButton } from '@/components/share-button'
 import { formatDate } from '@/utils/date'
-import { Share2Icon } from 'lucide-react'
 
 type RoomCardProps = {
 	data: {
@@ -13,6 +12,7 @@ type RoomCardProps = {
 
 export function KudoCardItem({ data }: RoomCardProps) {
 	const createdAtFormatted = formatDate(data.createdAt)
+	const shareMessage = `Kudo Card de ${data.sender} para ${data.recipient}: ${data.message}`
 
 	return (
 		<div className="p-4 border border-zinc-200 shadow-xs rounded">
@@ -39,10 +39,7 @@ export function KudoCardItem({ data }: RoomCardProps) {
 			<div className="border-t border-zinc-200 pt-4 mt-4">
 				<div className="flex items-center justify-between text-zinc-600">
 					<span className="text-sm">{createdAtFormatted}</span>
-
-					<Button size="icon" className="rounded-full" variant="ghost">
-						<Share2Icon className="size-5" />
-					</Button>
+					<ShareButton value={shareMessage} />
 				</div>
 			</div>
 		</div>
