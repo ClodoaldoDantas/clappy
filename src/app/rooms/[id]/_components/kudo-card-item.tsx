@@ -2,8 +2,17 @@ import { Button } from '@/components/ui/button'
 import { formatDate } from '@/utils/date'
 import { Share2Icon } from 'lucide-react'
 
-export function KudoCardItem() {
-	const createdAtFormatted = formatDate(new Date())
+type RoomCardProps = {
+	data: {
+		sender: string
+		recipient: string
+		message: string
+		createdAt: Date
+	}
+}
+
+export function KudoCardItem({ data }: RoomCardProps) {
+	const createdAtFormatted = formatDate(data.createdAt)
 
 	return (
 		<div className="p-4 border border-zinc-200 shadow-xs rounded">
@@ -12,22 +21,19 @@ export function KudoCardItem() {
 					<div className="flex flex-col">
 						<small className="font-medium text-zinc-600">De</small>
 						<span className="font-bold text-base text-zinc-900">
-							Maria Silva
+							{data.sender}
 						</span>
 					</div>
 
 					<div className="flex flex-col">
 						<small className="font-medium text-zinc-600">Para</small>
 						<span className="font-bold text-base text-zinc-900">
-							João Santos
+							{data.recipient}
 						</span>
 					</div>
 				</div>
 
-				<p className="text-zinc-600 min-h-12">
-					Parabéns pelo excelente trabalho no projeto do cliente ABC. Sua
-					dedicação foi fundamental para o sucesso!
-				</p>
+				<p className="text-zinc-600 min-h-12">{data.message}</p>
 			</div>
 
 			<div className="border-t border-zinc-200 pt-4 mt-4">

@@ -8,7 +8,7 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { formatDate } from '@/utils/date'
-import { Award, ChevronLeft } from 'lucide-react'
+import { AlertCircle, Award, CalendarFoldIcon, ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { KudoCardItem } from './_components/kudo-card-item'
@@ -46,12 +46,13 @@ export default async function RoomPage({ params }: RoomPageProps) {
 				<div className="flex items-center gap-4">
 					<div className="flex items-center gap-1 text-zinc-600">
 						<Award className="size-4" />
-						<span className="text-sm">3 kudos</span>
+						<span className="text-sm">{room.kudoCards.length} kudos</span>
 					</div>
 
-					<span className="text-sm text-zinc-600">
-						Criada em {createdAtFormatted}
-					</span>
+					<div className="flex items-center gap-1 text-zinc-600">
+						<CalendarFoldIcon className="size-4" />
+						<span className="text-sm">Criada em {createdAtFormatted}</span>
+					</div>
 				</div>
 			</header>
 
@@ -75,15 +76,22 @@ export default async function RoomPage({ params }: RoomPageProps) {
 							</DialogDescription>
 						</DialogHeader>
 
-						<NewKudoForm />
+						<NewKudoForm roomId={room.id} />
 					</DialogContent>
 				</Dialog>
 			</div>
 
+			{room.kudoCards.length === 0 && (
+				<div className="flex items-center justify-center gap-2">
+					<AlertCircle className="size-5 text-zinc-600" />
+					<p className="text-zinc-600">Nenhum kudo card encontrado.</p>
+				</div>
+			)}
+
 			<div className="grid grid-cols-3 gap-4">
-				<KudoCardItem />
-				<KudoCardItem />
-				<KudoCardItem />
+				{room.kudoCards.map(kudoCard => (
+					<KudoCardItem key={kudoCard.id} data={kudoCard} />
+				))}
 			</div>
 		</>
 	)

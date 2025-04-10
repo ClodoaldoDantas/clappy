@@ -13,7 +13,9 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
+import { createKudoCard } from '../actions'
 
 const formSchema = z.object({
 	sender: z.string().min(2, {
@@ -29,7 +31,7 @@ const formSchema = z.object({
 
 type NewKudoFormValues = z.infer<typeof formSchema>
 
-export function NewKudoForm() {
+export function NewKudoForm({ roomId }: { roomId: string }) {
 	const form = useForm<NewKudoFormValues>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -40,7 +42,17 @@ export function NewKudoForm() {
 	})
 
 	async function onSubmit(values: NewKudoFormValues) {
-		console.log(values)
+		const response = await createKudoCard({
+			sender: values.sender,
+			recipient: values.recipient,
+			message: values.message,
+			roomId,
+		})
+
+		if (response.success) {
+			form.reset()
+			toast.success(response.message)
+		}
 	}
 
 	return (

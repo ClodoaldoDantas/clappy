@@ -121,6 +121,15 @@ exports.Prisma.RoomScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.KudoCardScalarFieldEnum = {
+  id: 'id',
+  sender: 'sender',
+  recipient: 'recipient',
+  message: 'message',
+  roomId: 'roomId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -128,7 +137,8 @@ exports.Prisma.SortOrder = {
 
 
 exports.Prisma.ModelName = {
-  Room: 'Room'
+  Room: 'Room',
+  KudoCard: 'KudoCard'
 };
 
 /**

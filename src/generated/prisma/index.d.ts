@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type Room = $Result.DefaultSelection<Prisma.$RoomPayload>
+/**
+ * Model KudoCard
+ * 
+ */
+export type KudoCard = $Result.DefaultSelection<Prisma.$KudoCardPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +158,16 @@ export class PrismaClient<
     * ```
     */
   get room(): Prisma.RoomDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.kudoCard`: Exposes CRUD operations for the **KudoCard** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more KudoCards
+    * const kudoCards = await prisma.kudoCard.findMany()
+    * ```
+    */
+  get kudoCard(): Prisma.KudoCardDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Room: 'Room'
+    Room: 'Room',
+    KudoCard: 'KudoCard'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "room"
+      modelProps: "room" | "kudoCard"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +703,80 @@ export namespace Prisma {
           count: {
             args: Prisma.RoomCountArgs<ExtArgs>
             result: $Utils.Optional<RoomCountAggregateOutputType> | number
+          }
+        }
+      }
+      KudoCard: {
+        payload: Prisma.$KudoCardPayload<ExtArgs>
+        fields: Prisma.KudoCardFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KudoCardFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KudoCardFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>
+          }
+          findFirst: {
+            args: Prisma.KudoCardFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KudoCardFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>
+          }
+          findMany: {
+            args: Prisma.KudoCardFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>[]
+          }
+          create: {
+            args: Prisma.KudoCardCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>
+          }
+          createMany: {
+            args: Prisma.KudoCardCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.KudoCardCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>[]
+          }
+          delete: {
+            args: Prisma.KudoCardDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>
+          }
+          update: {
+            args: Prisma.KudoCardUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>
+          }
+          deleteMany: {
+            args: Prisma.KudoCardDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KudoCardUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.KudoCardUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>[]
+          }
+          upsert: {
+            args: Prisma.KudoCardUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KudoCardPayload>
+          }
+          aggregate: {
+            args: Prisma.KudoCardAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKudoCard>
+          }
+          groupBy: {
+            args: Prisma.KudoCardGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KudoCardGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.KudoCardCountArgs<ExtArgs>
+            result: $Utils.Optional<KudoCardCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     room?: RoomOmit
+    kudoCard?: KudoCardOmit
   }
 
   /* Types for Logging */
@@ -863,6 +954,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type RoomCountOutputType
+   */
+
+  export type RoomCountOutputType = {
+    kudoCards: number
+  }
+
+  export type RoomCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    kudoCards?: boolean | RoomCountOutputTypeCountKudoCardsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RoomCountOutputType without action
+   */
+  export type RoomCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoomCountOutputType
+     */
+    select?: RoomCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RoomCountOutputType without action
+   */
+  export type RoomCountOutputTypeCountKudoCardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KudoCardWhereInput
+  }
 
 
   /**
@@ -1025,6 +1146,8 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     createdAt?: boolean
+    kudoCards?: boolean | Room$kudoCardsArgs<ExtArgs>
+    _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["room"]>
 
   export type RoomSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1049,10 +1172,18 @@ export namespace Prisma {
   }
 
   export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "createdAt", ExtArgs["result"]["room"]>
+  export type RoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    kudoCards?: boolean | Room$kudoCardsArgs<ExtArgs>
+    _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type RoomIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type RoomIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $RoomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Room"
-    objects: {}
+    objects: {
+      kudoCards: Prisma.$KudoCardPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -1452,6 +1583,7 @@ export namespace Prisma {
    */
   export interface Prisma__RoomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    kudoCards<T extends Room$kudoCardsArgs<ExtArgs> = {}>(args?: Subset<T, Room$kudoCardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1502,6 +1634,10 @@ export namespace Prisma {
      */
     omit?: RoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    /**
      * Filter, which Room to fetch.
      */
     where: RoomWhereUniqueInput
@@ -1520,6 +1656,10 @@ export namespace Prisma {
      */
     omit?: RoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    /**
      * Filter, which Room to fetch.
      */
     where: RoomWhereUniqueInput
@@ -1537,6 +1677,10 @@ export namespace Prisma {
      * Omit specific fields from the Room
      */
     omit?: RoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
     /**
      * Filter, which Room to fetch.
      */
@@ -1586,6 +1730,10 @@ export namespace Prisma {
      */
     omit?: RoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    /**
      * Filter, which Room to fetch.
      */
     where?: RoomWhereInput
@@ -1634,6 +1782,10 @@ export namespace Prisma {
      */
     omit?: RoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    /**
      * Filter, which Rooms to fetch.
      */
     where?: RoomWhereInput
@@ -1676,6 +1828,10 @@ export namespace Prisma {
      * Omit specific fields from the Room
      */
     omit?: RoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
     /**
      * The data needed to create a Room.
      */
@@ -1722,6 +1878,10 @@ export namespace Prisma {
      * Omit specific fields from the Room
      */
     omit?: RoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
     /**
      * The data needed to update a Room.
      */
@@ -1789,6 +1949,10 @@ export namespace Prisma {
      */
     omit?: RoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    /**
      * The filter to search for the Room to update in case it exists.
      */
     where: RoomWhereUniqueInput
@@ -1815,6 +1979,10 @@ export namespace Prisma {
      */
     omit?: RoomOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+    /**
      * Filter which Room to delete.
      */
     where: RoomWhereUniqueInput
@@ -1835,6 +2003,30 @@ export namespace Prisma {
   }
 
   /**
+   * Room.kudoCards
+   */
+  export type Room$kudoCardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    where?: KudoCardWhereInput
+    orderBy?: KudoCardOrderByWithRelationInput | KudoCardOrderByWithRelationInput[]
+    cursor?: KudoCardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: KudoCardScalarFieldEnum | KudoCardScalarFieldEnum[]
+  }
+
+  /**
    * Room without action
    */
   export type RoomDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1846,6 +2038,1079 @@ export namespace Prisma {
      * Omit specific fields from the Room
      */
     omit?: RoomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoomInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model KudoCard
+   */
+
+  export type AggregateKudoCard = {
+    _count: KudoCardCountAggregateOutputType | null
+    _min: KudoCardMinAggregateOutputType | null
+    _max: KudoCardMaxAggregateOutputType | null
+  }
+
+  export type KudoCardMinAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    recipient: string | null
+    message: string | null
+    roomId: string | null
+    createdAt: Date | null
+  }
+
+  export type KudoCardMaxAggregateOutputType = {
+    id: string | null
+    sender: string | null
+    recipient: string | null
+    message: string | null
+    roomId: string | null
+    createdAt: Date | null
+  }
+
+  export type KudoCardCountAggregateOutputType = {
+    id: number
+    sender: number
+    recipient: number
+    message: number
+    roomId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type KudoCardMinAggregateInputType = {
+    id?: true
+    sender?: true
+    recipient?: true
+    message?: true
+    roomId?: true
+    createdAt?: true
+  }
+
+  export type KudoCardMaxAggregateInputType = {
+    id?: true
+    sender?: true
+    recipient?: true
+    message?: true
+    roomId?: true
+    createdAt?: true
+  }
+
+  export type KudoCardCountAggregateInputType = {
+    id?: true
+    sender?: true
+    recipient?: true
+    message?: true
+    roomId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type KudoCardAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KudoCard to aggregate.
+     */
+    where?: KudoCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KudoCards to fetch.
+     */
+    orderBy?: KudoCardOrderByWithRelationInput | KudoCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KudoCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KudoCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KudoCards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned KudoCards
+    **/
+    _count?: true | KudoCardCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KudoCardMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KudoCardMaxAggregateInputType
+  }
+
+  export type GetKudoCardAggregateType<T extends KudoCardAggregateArgs> = {
+        [P in keyof T & keyof AggregateKudoCard]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKudoCard[P]>
+      : GetScalarType<T[P], AggregateKudoCard[P]>
+  }
+
+
+
+
+  export type KudoCardGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KudoCardWhereInput
+    orderBy?: KudoCardOrderByWithAggregationInput | KudoCardOrderByWithAggregationInput[]
+    by: KudoCardScalarFieldEnum[] | KudoCardScalarFieldEnum
+    having?: KudoCardScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KudoCardCountAggregateInputType | true
+    _min?: KudoCardMinAggregateInputType
+    _max?: KudoCardMaxAggregateInputType
+  }
+
+  export type KudoCardGroupByOutputType = {
+    id: string
+    sender: string
+    recipient: string
+    message: string
+    roomId: string
+    createdAt: Date
+    _count: KudoCardCountAggregateOutputType | null
+    _min: KudoCardMinAggregateOutputType | null
+    _max: KudoCardMaxAggregateOutputType | null
+  }
+
+  type GetKudoCardGroupByPayload<T extends KudoCardGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KudoCardGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KudoCardGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KudoCardGroupByOutputType[P]>
+            : GetScalarType<T[P], KudoCardGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KudoCardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sender?: boolean
+    recipient?: boolean
+    message?: boolean
+    roomId?: boolean
+    createdAt?: boolean
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["kudoCard"]>
+
+  export type KudoCardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sender?: boolean
+    recipient?: boolean
+    message?: boolean
+    roomId?: boolean
+    createdAt?: boolean
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["kudoCard"]>
+
+  export type KudoCardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sender?: boolean
+    recipient?: boolean
+    message?: boolean
+    roomId?: boolean
+    createdAt?: boolean
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["kudoCard"]>
+
+  export type KudoCardSelectScalar = {
+    id?: boolean
+    sender?: boolean
+    recipient?: boolean
+    message?: boolean
+    roomId?: boolean
+    createdAt?: boolean
+  }
+
+  export type KudoCardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sender" | "recipient" | "message" | "roomId" | "createdAt", ExtArgs["result"]["kudoCard"]>
+  export type KudoCardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }
+  export type KudoCardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }
+  export type KudoCardIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }
+
+  export type $KudoCardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "KudoCard"
+    objects: {
+      room: Prisma.$RoomPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sender: string
+      recipient: string
+      message: string
+      roomId: string
+      createdAt: Date
+    }, ExtArgs["result"]["kudoCard"]>
+    composites: {}
+  }
+
+  type KudoCardGetPayload<S extends boolean | null | undefined | KudoCardDefaultArgs> = $Result.GetResult<Prisma.$KudoCardPayload, S>
+
+  type KudoCardCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<KudoCardFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: KudoCardCountAggregateInputType | true
+    }
+
+  export interface KudoCardDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['KudoCard'], meta: { name: 'KudoCard' } }
+    /**
+     * Find zero or one KudoCard that matches the filter.
+     * @param {KudoCardFindUniqueArgs} args - Arguments to find a KudoCard
+     * @example
+     * // Get one KudoCard
+     * const kudoCard = await prisma.kudoCard.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KudoCardFindUniqueArgs>(args: SelectSubset<T, KudoCardFindUniqueArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one KudoCard that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {KudoCardFindUniqueOrThrowArgs} args - Arguments to find a KudoCard
+     * @example
+     * // Get one KudoCard
+     * const kudoCard = await prisma.kudoCard.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KudoCardFindUniqueOrThrowArgs>(args: SelectSubset<T, KudoCardFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KudoCard that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardFindFirstArgs} args - Arguments to find a KudoCard
+     * @example
+     * // Get one KudoCard
+     * const kudoCard = await prisma.kudoCard.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KudoCardFindFirstArgs>(args?: SelectSubset<T, KudoCardFindFirstArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KudoCard that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardFindFirstOrThrowArgs} args - Arguments to find a KudoCard
+     * @example
+     * // Get one KudoCard
+     * const kudoCard = await prisma.kudoCard.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KudoCardFindFirstOrThrowArgs>(args?: SelectSubset<T, KudoCardFindFirstOrThrowArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more KudoCards that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all KudoCards
+     * const kudoCards = await prisma.kudoCard.findMany()
+     * 
+     * // Get first 10 KudoCards
+     * const kudoCards = await prisma.kudoCard.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const kudoCardWithIdOnly = await prisma.kudoCard.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends KudoCardFindManyArgs>(args?: SelectSubset<T, KudoCardFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a KudoCard.
+     * @param {KudoCardCreateArgs} args - Arguments to create a KudoCard.
+     * @example
+     * // Create one KudoCard
+     * const KudoCard = await prisma.kudoCard.create({
+     *   data: {
+     *     // ... data to create a KudoCard
+     *   }
+     * })
+     * 
+     */
+    create<T extends KudoCardCreateArgs>(args: SelectSubset<T, KudoCardCreateArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many KudoCards.
+     * @param {KudoCardCreateManyArgs} args - Arguments to create many KudoCards.
+     * @example
+     * // Create many KudoCards
+     * const kudoCard = await prisma.kudoCard.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KudoCardCreateManyArgs>(args?: SelectSubset<T, KudoCardCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many KudoCards and returns the data saved in the database.
+     * @param {KudoCardCreateManyAndReturnArgs} args - Arguments to create many KudoCards.
+     * @example
+     * // Create many KudoCards
+     * const kudoCard = await prisma.kudoCard.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many KudoCards and only return the `id`
+     * const kudoCardWithIdOnly = await prisma.kudoCard.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends KudoCardCreateManyAndReturnArgs>(args?: SelectSubset<T, KudoCardCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a KudoCard.
+     * @param {KudoCardDeleteArgs} args - Arguments to delete one KudoCard.
+     * @example
+     * // Delete one KudoCard
+     * const KudoCard = await prisma.kudoCard.delete({
+     *   where: {
+     *     // ... filter to delete one KudoCard
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KudoCardDeleteArgs>(args: SelectSubset<T, KudoCardDeleteArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one KudoCard.
+     * @param {KudoCardUpdateArgs} args - Arguments to update one KudoCard.
+     * @example
+     * // Update one KudoCard
+     * const kudoCard = await prisma.kudoCard.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KudoCardUpdateArgs>(args: SelectSubset<T, KudoCardUpdateArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more KudoCards.
+     * @param {KudoCardDeleteManyArgs} args - Arguments to filter KudoCards to delete.
+     * @example
+     * // Delete a few KudoCards
+     * const { count } = await prisma.kudoCard.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KudoCardDeleteManyArgs>(args?: SelectSubset<T, KudoCardDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KudoCards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many KudoCards
+     * const kudoCard = await prisma.kudoCard.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KudoCardUpdateManyArgs>(args: SelectSubset<T, KudoCardUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KudoCards and returns the data updated in the database.
+     * @param {KudoCardUpdateManyAndReturnArgs} args - Arguments to update many KudoCards.
+     * @example
+     * // Update many KudoCards
+     * const kudoCard = await prisma.kudoCard.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more KudoCards and only return the `id`
+     * const kudoCardWithIdOnly = await prisma.kudoCard.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends KudoCardUpdateManyAndReturnArgs>(args: SelectSubset<T, KudoCardUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one KudoCard.
+     * @param {KudoCardUpsertArgs} args - Arguments to update or create a KudoCard.
+     * @example
+     * // Update or create a KudoCard
+     * const kudoCard = await prisma.kudoCard.upsert({
+     *   create: {
+     *     // ... data to create a KudoCard
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the KudoCard we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KudoCardUpsertArgs>(args: SelectSubset<T, KudoCardUpsertArgs<ExtArgs>>): Prisma__KudoCardClient<$Result.GetResult<Prisma.$KudoCardPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of KudoCards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardCountArgs} args - Arguments to filter KudoCards to count.
+     * @example
+     * // Count the number of KudoCards
+     * const count = await prisma.kudoCard.count({
+     *   where: {
+     *     // ... the filter for the KudoCards we want to count
+     *   }
+     * })
+    **/
+    count<T extends KudoCardCountArgs>(
+      args?: Subset<T, KudoCardCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KudoCardCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a KudoCard.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KudoCardAggregateArgs>(args: Subset<T, KudoCardAggregateArgs>): Prisma.PrismaPromise<GetKudoCardAggregateType<T>>
+
+    /**
+     * Group by KudoCard.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KudoCardGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KudoCardGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KudoCardGroupByArgs['orderBy'] }
+        : { orderBy?: KudoCardGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KudoCardGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKudoCardGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the KudoCard model
+   */
+  readonly fields: KudoCardFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for KudoCard.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KudoCardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    room<T extends RoomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomDefaultArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the KudoCard model
+   */
+  interface KudoCardFieldRefs {
+    readonly id: FieldRef<"KudoCard", 'String'>
+    readonly sender: FieldRef<"KudoCard", 'String'>
+    readonly recipient: FieldRef<"KudoCard", 'String'>
+    readonly message: FieldRef<"KudoCard", 'String'>
+    readonly roomId: FieldRef<"KudoCard", 'String'>
+    readonly createdAt: FieldRef<"KudoCard", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * KudoCard findUnique
+   */
+  export type KudoCardFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * Filter, which KudoCard to fetch.
+     */
+    where: KudoCardWhereUniqueInput
+  }
+
+  /**
+   * KudoCard findUniqueOrThrow
+   */
+  export type KudoCardFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * Filter, which KudoCard to fetch.
+     */
+    where: KudoCardWhereUniqueInput
+  }
+
+  /**
+   * KudoCard findFirst
+   */
+  export type KudoCardFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * Filter, which KudoCard to fetch.
+     */
+    where?: KudoCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KudoCards to fetch.
+     */
+    orderBy?: KudoCardOrderByWithRelationInput | KudoCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KudoCards.
+     */
+    cursor?: KudoCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KudoCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KudoCards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KudoCards.
+     */
+    distinct?: KudoCardScalarFieldEnum | KudoCardScalarFieldEnum[]
+  }
+
+  /**
+   * KudoCard findFirstOrThrow
+   */
+  export type KudoCardFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * Filter, which KudoCard to fetch.
+     */
+    where?: KudoCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KudoCards to fetch.
+     */
+    orderBy?: KudoCardOrderByWithRelationInput | KudoCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KudoCards.
+     */
+    cursor?: KudoCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KudoCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KudoCards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KudoCards.
+     */
+    distinct?: KudoCardScalarFieldEnum | KudoCardScalarFieldEnum[]
+  }
+
+  /**
+   * KudoCard findMany
+   */
+  export type KudoCardFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * Filter, which KudoCards to fetch.
+     */
+    where?: KudoCardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KudoCards to fetch.
+     */
+    orderBy?: KudoCardOrderByWithRelationInput | KudoCardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing KudoCards.
+     */
+    cursor?: KudoCardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KudoCards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KudoCards.
+     */
+    skip?: number
+    distinct?: KudoCardScalarFieldEnum | KudoCardScalarFieldEnum[]
+  }
+
+  /**
+   * KudoCard create
+   */
+  export type KudoCardCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * The data needed to create a KudoCard.
+     */
+    data: XOR<KudoCardCreateInput, KudoCardUncheckedCreateInput>
+  }
+
+  /**
+   * KudoCard createMany
+   */
+  export type KudoCardCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many KudoCards.
+     */
+    data: KudoCardCreateManyInput | KudoCardCreateManyInput[]
+  }
+
+  /**
+   * KudoCard createManyAndReturn
+   */
+  export type KudoCardCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * The data used to create many KudoCards.
+     */
+    data: KudoCardCreateManyInput | KudoCardCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KudoCard update
+   */
+  export type KudoCardUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * The data needed to update a KudoCard.
+     */
+    data: XOR<KudoCardUpdateInput, KudoCardUncheckedUpdateInput>
+    /**
+     * Choose, which KudoCard to update.
+     */
+    where: KudoCardWhereUniqueInput
+  }
+
+  /**
+   * KudoCard updateMany
+   */
+  export type KudoCardUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update KudoCards.
+     */
+    data: XOR<KudoCardUpdateManyMutationInput, KudoCardUncheckedUpdateManyInput>
+    /**
+     * Filter which KudoCards to update
+     */
+    where?: KudoCardWhereInput
+    /**
+     * Limit how many KudoCards to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * KudoCard updateManyAndReturn
+   */
+  export type KudoCardUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * The data used to update KudoCards.
+     */
+    data: XOR<KudoCardUpdateManyMutationInput, KudoCardUncheckedUpdateManyInput>
+    /**
+     * Filter which KudoCards to update
+     */
+    where?: KudoCardWhereInput
+    /**
+     * Limit how many KudoCards to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KudoCard upsert
+   */
+  export type KudoCardUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * The filter to search for the KudoCard to update in case it exists.
+     */
+    where: KudoCardWhereUniqueInput
+    /**
+     * In case the KudoCard found by the `where` argument doesn't exist, create a new KudoCard with this data.
+     */
+    create: XOR<KudoCardCreateInput, KudoCardUncheckedCreateInput>
+    /**
+     * In case the KudoCard was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KudoCardUpdateInput, KudoCardUncheckedUpdateInput>
+  }
+
+  /**
+   * KudoCard delete
+   */
+  export type KudoCardDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
+    /**
+     * Filter which KudoCard to delete.
+     */
+    where: KudoCardWhereUniqueInput
+  }
+
+  /**
+   * KudoCard deleteMany
+   */
+  export type KudoCardDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KudoCards to delete
+     */
+    where?: KudoCardWhereInput
+    /**
+     * Limit how many KudoCards to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * KudoCard without action
+   */
+  export type KudoCardDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KudoCard
+     */
+    select?: KudoCardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KudoCard
+     */
+    omit?: KudoCardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KudoCardInclude<ExtArgs> | null
   }
 
 
@@ -1868,6 +3133,18 @@ export namespace Prisma {
   };
 
   export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+  export const KudoCardScalarFieldEnum: {
+    id: 'id',
+    sender: 'sender',
+    recipient: 'recipient',
+    message: 'message',
+    roomId: 'roomId',
+    createdAt: 'createdAt'
+  };
+
+  export type KudoCardScalarFieldEnum = (typeof KudoCardScalarFieldEnum)[keyof typeof KudoCardScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1915,6 +3192,7 @@ export namespace Prisma {
     name?: StringFilter<"Room"> | string
     description?: StringFilter<"Room"> | string
     createdAt?: DateTimeFilter<"Room"> | Date | string
+    kudoCards?: KudoCardListRelationFilter
   }
 
   export type RoomOrderByWithRelationInput = {
@@ -1922,6 +3200,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    kudoCards?: KudoCardOrderByRelationAggregateInput
   }
 
   export type RoomWhereUniqueInput = Prisma.AtLeast<{
@@ -1932,6 +3211,7 @@ export namespace Prisma {
     name?: StringFilter<"Room"> | string
     description?: StringFilter<"Room"> | string
     createdAt?: DateTimeFilter<"Room"> | Date | string
+    kudoCards?: KudoCardListRelationFilter
   }, "id">
 
   export type RoomOrderByWithAggregationInput = {
@@ -1954,11 +3234,72 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Room"> | Date | string
   }
 
+  export type KudoCardWhereInput = {
+    AND?: KudoCardWhereInput | KudoCardWhereInput[]
+    OR?: KudoCardWhereInput[]
+    NOT?: KudoCardWhereInput | KudoCardWhereInput[]
+    id?: StringFilter<"KudoCard"> | string
+    sender?: StringFilter<"KudoCard"> | string
+    recipient?: StringFilter<"KudoCard"> | string
+    message?: StringFilter<"KudoCard"> | string
+    roomId?: StringFilter<"KudoCard"> | string
+    createdAt?: DateTimeFilter<"KudoCard"> | Date | string
+    room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+  }
+
+  export type KudoCardOrderByWithRelationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    recipient?: SortOrder
+    message?: SortOrder
+    roomId?: SortOrder
+    createdAt?: SortOrder
+    room?: RoomOrderByWithRelationInput
+  }
+
+  export type KudoCardWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: KudoCardWhereInput | KudoCardWhereInput[]
+    OR?: KudoCardWhereInput[]
+    NOT?: KudoCardWhereInput | KudoCardWhereInput[]
+    sender?: StringFilter<"KudoCard"> | string
+    recipient?: StringFilter<"KudoCard"> | string
+    message?: StringFilter<"KudoCard"> | string
+    roomId?: StringFilter<"KudoCard"> | string
+    createdAt?: DateTimeFilter<"KudoCard"> | Date | string
+    room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+  }, "id">
+
+  export type KudoCardOrderByWithAggregationInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    recipient?: SortOrder
+    message?: SortOrder
+    roomId?: SortOrder
+    createdAt?: SortOrder
+    _count?: KudoCardCountOrderByAggregateInput
+    _max?: KudoCardMaxOrderByAggregateInput
+    _min?: KudoCardMinOrderByAggregateInput
+  }
+
+  export type KudoCardScalarWhereWithAggregatesInput = {
+    AND?: KudoCardScalarWhereWithAggregatesInput | KudoCardScalarWhereWithAggregatesInput[]
+    OR?: KudoCardScalarWhereWithAggregatesInput[]
+    NOT?: KudoCardScalarWhereWithAggregatesInput | KudoCardScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"KudoCard"> | string
+    sender?: StringWithAggregatesFilter<"KudoCard"> | string
+    recipient?: StringWithAggregatesFilter<"KudoCard"> | string
+    message?: StringWithAggregatesFilter<"KudoCard"> | string
+    roomId?: StringWithAggregatesFilter<"KudoCard"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"KudoCard"> | Date | string
+  }
+
   export type RoomCreateInput = {
     id?: string
     name: string
     description: string
     createdAt?: Date | string
+    kudoCards?: KudoCardCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUncheckedCreateInput = {
@@ -1966,6 +3307,7 @@ export namespace Prisma {
     name: string
     description: string
     createdAt?: Date | string
+    kudoCards?: KudoCardUncheckedCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUpdateInput = {
@@ -1973,6 +3315,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kudoCards?: KudoCardUpdateManyWithoutRoomNestedInput
   }
 
   export type RoomUncheckedUpdateInput = {
@@ -1980,6 +3323,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kudoCards?: KudoCardUncheckedUpdateManyWithoutRoomNestedInput
   }
 
   export type RoomCreateManyInput = {
@@ -2000,6 +3344,68 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KudoCardCreateInput = {
+    id?: string
+    sender: string
+    recipient: string
+    message: string
+    createdAt?: Date | string
+    room: RoomCreateNestedOneWithoutKudoCardsInput
+  }
+
+  export type KudoCardUncheckedCreateInput = {
+    id?: string
+    sender: string
+    recipient: string
+    message: string
+    roomId: string
+    createdAt?: Date | string
+  }
+
+  export type KudoCardUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    room?: RoomUpdateOneRequiredWithoutKudoCardsNestedInput
+  }
+
+  export type KudoCardUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    roomId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KudoCardCreateManyInput = {
+    id?: string
+    sender: string
+    recipient: string
+    message: string
+    roomId: string
+    createdAt?: Date | string
+  }
+
+  export type KudoCardUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KudoCardUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    roomId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -2026,6 +3432,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type KudoCardListRelationFilter = {
+    every?: KudoCardWhereInput
+    some?: KudoCardWhereInput
+    none?: KudoCardWhereInput
+  }
+
+  export type KudoCardOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type RoomCountOrderByAggregateInput = {
@@ -2080,12 +3496,100 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type RoomScalarRelationFilter = {
+    is?: RoomWhereInput
+    isNot?: RoomWhereInput
+  }
+
+  export type KudoCardCountOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    recipient?: SortOrder
+    message?: SortOrder
+    roomId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KudoCardMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    recipient?: SortOrder
+    message?: SortOrder
+    roomId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KudoCardMinOrderByAggregateInput = {
+    id?: SortOrder
+    sender?: SortOrder
+    recipient?: SortOrder
+    message?: SortOrder
+    roomId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type KudoCardCreateNestedManyWithoutRoomInput = {
+    create?: XOR<KudoCardCreateWithoutRoomInput, KudoCardUncheckedCreateWithoutRoomInput> | KudoCardCreateWithoutRoomInput[] | KudoCardUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: KudoCardCreateOrConnectWithoutRoomInput | KudoCardCreateOrConnectWithoutRoomInput[]
+    createMany?: KudoCardCreateManyRoomInputEnvelope
+    connect?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+  }
+
+  export type KudoCardUncheckedCreateNestedManyWithoutRoomInput = {
+    create?: XOR<KudoCardCreateWithoutRoomInput, KudoCardUncheckedCreateWithoutRoomInput> | KudoCardCreateWithoutRoomInput[] | KudoCardUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: KudoCardCreateOrConnectWithoutRoomInput | KudoCardCreateOrConnectWithoutRoomInput[]
+    createMany?: KudoCardCreateManyRoomInputEnvelope
+    connect?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type KudoCardUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<KudoCardCreateWithoutRoomInput, KudoCardUncheckedCreateWithoutRoomInput> | KudoCardCreateWithoutRoomInput[] | KudoCardUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: KudoCardCreateOrConnectWithoutRoomInput | KudoCardCreateOrConnectWithoutRoomInput[]
+    upsert?: KudoCardUpsertWithWhereUniqueWithoutRoomInput | KudoCardUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: KudoCardCreateManyRoomInputEnvelope
+    set?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    disconnect?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    delete?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    connect?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    update?: KudoCardUpdateWithWhereUniqueWithoutRoomInput | KudoCardUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: KudoCardUpdateManyWithWhereWithoutRoomInput | KudoCardUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: KudoCardScalarWhereInput | KudoCardScalarWhereInput[]
+  }
+
+  export type KudoCardUncheckedUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<KudoCardCreateWithoutRoomInput, KudoCardUncheckedCreateWithoutRoomInput> | KudoCardCreateWithoutRoomInput[] | KudoCardUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: KudoCardCreateOrConnectWithoutRoomInput | KudoCardCreateOrConnectWithoutRoomInput[]
+    upsert?: KudoCardUpsertWithWhereUniqueWithoutRoomInput | KudoCardUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: KudoCardCreateManyRoomInputEnvelope
+    set?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    disconnect?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    delete?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    connect?: KudoCardWhereUniqueInput | KudoCardWhereUniqueInput[]
+    update?: KudoCardUpdateWithWhereUniqueWithoutRoomInput | KudoCardUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: KudoCardUpdateManyWithWhereWithoutRoomInput | KudoCardUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: KudoCardScalarWhereInput | KudoCardScalarWhereInput[]
+  }
+
+  export type RoomCreateNestedOneWithoutKudoCardsInput = {
+    create?: XOR<RoomCreateWithoutKudoCardsInput, RoomUncheckedCreateWithoutKudoCardsInput>
+    connectOrCreate?: RoomCreateOrConnectWithoutKudoCardsInput
+    connect?: RoomWhereUniqueInput
+  }
+
+  export type RoomUpdateOneRequiredWithoutKudoCardsNestedInput = {
+    create?: XOR<RoomCreateWithoutKudoCardsInput, RoomUncheckedCreateWithoutKudoCardsInput>
+    connectOrCreate?: RoomCreateOrConnectWithoutKudoCardsInput
+    upsert?: RoomUpsertWithoutKudoCardsInput
+    connect?: RoomWhereUniqueInput
+    update?: XOR<XOR<RoomUpdateToOneWithWhereWithoutKudoCardsInput, RoomUpdateWithoutKudoCardsInput>, RoomUncheckedUpdateWithoutKudoCardsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2153,6 +3657,135 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type KudoCardCreateWithoutRoomInput = {
+    id?: string
+    sender: string
+    recipient: string
+    message: string
+    createdAt?: Date | string
+  }
+
+  export type KudoCardUncheckedCreateWithoutRoomInput = {
+    id?: string
+    sender: string
+    recipient: string
+    message: string
+    createdAt?: Date | string
+  }
+
+  export type KudoCardCreateOrConnectWithoutRoomInput = {
+    where: KudoCardWhereUniqueInput
+    create: XOR<KudoCardCreateWithoutRoomInput, KudoCardUncheckedCreateWithoutRoomInput>
+  }
+
+  export type KudoCardCreateManyRoomInputEnvelope = {
+    data: KudoCardCreateManyRoomInput | KudoCardCreateManyRoomInput[]
+  }
+
+  export type KudoCardUpsertWithWhereUniqueWithoutRoomInput = {
+    where: KudoCardWhereUniqueInput
+    update: XOR<KudoCardUpdateWithoutRoomInput, KudoCardUncheckedUpdateWithoutRoomInput>
+    create: XOR<KudoCardCreateWithoutRoomInput, KudoCardUncheckedCreateWithoutRoomInput>
+  }
+
+  export type KudoCardUpdateWithWhereUniqueWithoutRoomInput = {
+    where: KudoCardWhereUniqueInput
+    data: XOR<KudoCardUpdateWithoutRoomInput, KudoCardUncheckedUpdateWithoutRoomInput>
+  }
+
+  export type KudoCardUpdateManyWithWhereWithoutRoomInput = {
+    where: KudoCardScalarWhereInput
+    data: XOR<KudoCardUpdateManyMutationInput, KudoCardUncheckedUpdateManyWithoutRoomInput>
+  }
+
+  export type KudoCardScalarWhereInput = {
+    AND?: KudoCardScalarWhereInput | KudoCardScalarWhereInput[]
+    OR?: KudoCardScalarWhereInput[]
+    NOT?: KudoCardScalarWhereInput | KudoCardScalarWhereInput[]
+    id?: StringFilter<"KudoCard"> | string
+    sender?: StringFilter<"KudoCard"> | string
+    recipient?: StringFilter<"KudoCard"> | string
+    message?: StringFilter<"KudoCard"> | string
+    roomId?: StringFilter<"KudoCard"> | string
+    createdAt?: DateTimeFilter<"KudoCard"> | Date | string
+  }
+
+  export type RoomCreateWithoutKudoCardsInput = {
+    id?: string
+    name: string
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type RoomUncheckedCreateWithoutKudoCardsInput = {
+    id?: string
+    name: string
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type RoomCreateOrConnectWithoutKudoCardsInput = {
+    where: RoomWhereUniqueInput
+    create: XOR<RoomCreateWithoutKudoCardsInput, RoomUncheckedCreateWithoutKudoCardsInput>
+  }
+
+  export type RoomUpsertWithoutKudoCardsInput = {
+    update: XOR<RoomUpdateWithoutKudoCardsInput, RoomUncheckedUpdateWithoutKudoCardsInput>
+    create: XOR<RoomCreateWithoutKudoCardsInput, RoomUncheckedCreateWithoutKudoCardsInput>
+    where?: RoomWhereInput
+  }
+
+  export type RoomUpdateToOneWithWhereWithoutKudoCardsInput = {
+    where?: RoomWhereInput
+    data: XOR<RoomUpdateWithoutKudoCardsInput, RoomUncheckedUpdateWithoutKudoCardsInput>
+  }
+
+  export type RoomUpdateWithoutKudoCardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoomUncheckedUpdateWithoutKudoCardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KudoCardCreateManyRoomInput = {
+    id?: string
+    sender: string
+    recipient: string
+    message: string
+    createdAt?: Date | string
+  }
+
+  export type KudoCardUpdateWithoutRoomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KudoCardUncheckedUpdateWithoutRoomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KudoCardUncheckedUpdateManyWithoutRoomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sender?: StringFieldUpdateOperationsInput | string
+    recipient?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

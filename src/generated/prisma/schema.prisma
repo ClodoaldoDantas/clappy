@@ -9,10 +9,23 @@ datasource db {
 }
 
 model Room {
-  id          String   @id @default(cuid())
+  id          String     @id @default(cuid())
   name        String
   description String
-  createdAt   DateTime @default(now()) @map("created_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  kudoCards   KudoCard[]
 
   @@map("rooms")
+}
+
+model KudoCard {
+  id        String   @id @default(cuid())
+  sender    String
+  recipient String
+  message   String
+  room      Room     @relation(fields: [roomId], references: [id])
+  roomId    String   @map("room_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("kudo_cards")
 }
