@@ -13,7 +13,9 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
+import { createRoom } from '../actions'
 
 const formSchema = z.object({
 	name: z.string().min(2, {
@@ -35,8 +37,13 @@ export function NewRoomForm() {
 		},
 	})
 
-	function onSubmit(values: NewRoomFormValues) {
-		console.log(values)
+	async function onSubmit(values: NewRoomFormValues) {
+		const response = await createRoom(values)
+
+		if (response.success) {
+			form.reset()
+			toast.success(response.message)
+		}
 	}
 
 	return (
@@ -74,7 +81,9 @@ export function NewRoomForm() {
 					)}
 				/>
 
-				<Button type="submit">Criar Sala</Button>
+				<Button type="submit" disabled={form.formState.isSubmitting}>
+					Criar Sala
+				</Button>
 			</form>
 		</Form>
 	)

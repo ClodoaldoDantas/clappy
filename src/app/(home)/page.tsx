@@ -10,12 +10,17 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { NewRoomForm } from './_components/new-room-form'
+import { getRooms } from './actions'
 
-export default function Home() {
+export default async function Home() {
+	const rooms = await getRooms()
+
+	console.log(rooms)
+
 	return (
 		<>
 			<div className="flex items-center justify-between mb-6">
-				<h2 className="text-2xl font-bold text-violet-600">Salas Criadas</h2>
+				<h1 className="text-2xl font-bold text-violet-600">Salas Criadas</h1>
 
 				<Dialog>
 					<DialogTrigger asChild>
@@ -40,9 +45,9 @@ export default function Home() {
 			</div>
 
 			<div className="grid grid-cols-3 gap-4">
-				<RoomCard />
-				<RoomCard />
-				<RoomCard />
+				{rooms.map(room => (
+					<RoomCard key={room.id} data={room} />
+				))}
 			</div>
 		</>
 	)

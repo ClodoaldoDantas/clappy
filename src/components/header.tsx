@@ -1,12 +1,13 @@
 import { Award } from 'lucide-react'
+import Link from 'next/link'
 
 export function Header() {
 	return (
 		<header className="p-4 border-b border-zinc-200">
-			<div className="flex items-center justify-center gap-2">
+			<Link href="/" className="flex items-center justify-center gap-1">
 				<Award size={24} className="text-violet-500" />
-				<h1 className="text-lg font-bold text-zinc-900">Clappy</h1>
-			</div>
+				<span className="text-lg font-bold text-zinc-900">Clappy</span>
+			</Link>
 		</header>
 	)
 }

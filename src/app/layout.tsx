@@ -1,5 +1,6 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { Toaster } from '@/components/ui/sonner'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
 import './globals.css'
@@ -31,6 +32,7 @@ export default function RootLayout({
 					</main>
 					<Footer />
 				</div>
+				<Toaster />
 			</body>
 		</html>
 	)
