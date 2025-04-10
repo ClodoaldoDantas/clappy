@@ -1,5 +1,5 @@
 import { formatDate } from '@/utils/date'
-import { UserRound } from 'lucide-react'
+import { Award } from 'lucide-react'
 import Link from 'next/link'
 
 type RoomCardProps = {
@@ -25,11 +25,11 @@ export function RoomCard({ data }: RoomCardProps) {
 				<div className="border-t border-zinc-200 pt-4 mt-4">
 					<div className="flex items-center justify-between text-zinc-600">
 						<div className="flex items-center gap-1.5">
-							<UserRound className="size-4" />
-							<span className="text-sm font-medium">0 membros</span>
+							<Award className="size-4" />
+							<span className="text-sm font-medium">3 kudos</span>
 						</div>
 
-						<span className="text-sm">{createdAtFormatted}</span>
+						<span className="text-sm">Criada em {createdAtFormatted}</span>
 					</div>
 				</div>
 			</div>

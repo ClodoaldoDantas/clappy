@@ -15,8 +15,6 @@ import { getRooms } from './actions'
 export default async function Home() {
 	const rooms = await getRooms()
 
-	console.log(rooms)
-
 	return (
 		<>
 			<div className="flex items-center justify-between mb-6">
